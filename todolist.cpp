@@ -3,8 +3,11 @@
 
 ToDoList::ToDoList( QObject* parent ) :
     QObject( parent ) {
-    m_items.append( { true, QStringLiteral( "go home" ) } );
-    m_items.append( { false, QStringLiteral( "fix the life" ) } );
+    m_items.append( { true, QStringLiteral( "Explore Basic QML Concepts" ) } );
+    m_items.append( { true, QStringLiteral( "Learn QML Model Data" ) } );
+    m_items.append( { true, QStringLiteral( "Learn Property Attributes" ) } );
+    m_items.append( { true, QStringLiteral( "Learn QML Basic Types" ) } );
+    m_items.append( { true, QStringLiteral( "Learn Basic Signal/Slots Syntax" ) } );
 }
 
 auto ToDoList::items()->QVector<ToDoItem> const {
