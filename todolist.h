@@ -9,6 +9,9 @@ struct ToDoItem {
     QString title;
 };
 
+/**
+ * @brief Objeto personalido criado para representar o tipo da minha todolist
+ */
 class ToDoList : public QObject {
     Q_OBJECT
 public:
@@ -27,7 +30,8 @@ signals:
     void postItemRemoved();
 
 public slots:
-    void appendItem();
+    int countDoneItems();
+    void appendItem( const QString& title );
     void removeCompletedItems();
 
 private:

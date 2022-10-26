@@ -16,8 +16,6 @@ file(GLOB SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/*.qrc"
 )
 
-message(STATUS "oiiii ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
 if(ANDROID)
