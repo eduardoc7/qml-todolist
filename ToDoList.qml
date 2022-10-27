@@ -45,6 +45,7 @@ ColumnLayout {
                 Button {
                     Layout.maximumWidth: 62
                     text: qsTr("Excluir")
+                    onClicked: toDoList.removeItemFromList(model.index)
                 }
             }
         }

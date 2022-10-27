@@ -32,7 +32,7 @@ signals:
 public slots:
     int countDoneItems();
     void appendItem( const QString& title );
-    void removeCompletedItems();
+    void removeItemFromList( const int& index );
 
 private:
     QVector<ToDoItem> m_items;

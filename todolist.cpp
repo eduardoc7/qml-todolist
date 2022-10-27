@@ -54,16 +54,10 @@ void ToDoList::appendItem( const QString& title ) {
     emit postItemAppended();
 }
 
-void ToDoList::removeCompletedItems() {
-    for ( int i = 0; i < m_items.size(); ) {
-        if ( m_items.at( i ).done ) {
-            emit preItemRemoved( i );
+void ToDoList::removeItemFromList( const int& index ) {
+    emit preItemRemoved( index );
 
-            m_items.removeAt( i );
+    m_items.removeAt( index );
 
-            emit postItemRemoved();
-        } else {
-            ++i;
-        }
-    }
+    emit postItemRemoved();
 }
