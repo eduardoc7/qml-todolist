@@ -39,7 +39,7 @@ jobs:
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
           archives: 'qttools qtquickcontrols2 qtquickcontrols qtdeclarative qtbase'
-          tools: 'tools_cmake tools_ninja tools_generic'
+          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
 
       - name: Build project
         run: |
@@ -47,9 +47,6 @@ jobs:
           export CC=$(which gcc)
           export CXX=$(which gcc++)
           export CURRENT_SOURCE_DIR=$(pwd)
-          # printenv
-          # cd ${{env.Qt5_Dir}}/bin
-          # ls -all
           mkdir build && cd build
           export CURRENT_BUILD_DIR=$(pwd)
           cmake .. -G Ninja
