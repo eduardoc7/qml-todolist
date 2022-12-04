@@ -53,31 +53,18 @@ jobs:
           cmake --build . --config Debug --target all -j $(nproc) --
 
       # Check the code and create report code quality
-      - name: Running Clang Tidy # with checks readability, mordenize, hipperformace, performance
+      - name: Running Clang Tidy
         run: |
           run-clang-tidy -p build -fix -j $(nproc) -header-filter='.*' -format $(find . -iname '*.cpp') > report_code_quality.txt
 
-      # - name: Upload Artifacts
-      #   if: ${{ failure() }} || ${{ success() }}
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: report_code_quality
-      #     path: ./report_code_quality.txt
+      - name: Upload Artifacts
+        if: ${{ failure() }} || ${{ success() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: report_code_quality
+          path: ./report_code_quality.txt
 
-      # # Publish updates to apply clang-tidy --fix-errors  
-      # - name: Delete Report
-      #   if: ${{ failure() }} || ${{ success() }}
-      #   run: |
-      #     rm -rf report_code_quality.txt
-
-      # - name: Get the current branch name
-      #   if: ${{ failure() }} || ${{ success() }}
-      #   run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-      #   id: myref
-
-      # - name: Publish Updates
-      #   if: ${{ failure() }} || ${{ success() }}
-      #   uses: mikeal/publish-to-github-action@master
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     BRANCH_NAME: ${{ steps.myref.outputs.branch }} # Current branch 
+      - name: Delete Report
+        if: ${{ failure() }} || ${{ success() }}
+        run: |
+          rm -rf report_code_quality.txt
