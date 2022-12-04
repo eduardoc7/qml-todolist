@@ -19,8 +19,7 @@ jobs:
       - name: Installing Dependencies
         run: |
           sudo apt update && sudo apt install clang-tidy clang-format ninja-build -y
-# sudo apt-get update && sudo apt-get install build-essential
-      
+  
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v1.13
         with:
@@ -36,7 +35,7 @@ jobs:
           arch: 'gcc_64'
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
-          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
+          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
           setup-python: 'true'
           tools-only: 'false'
           cache: 'false'
