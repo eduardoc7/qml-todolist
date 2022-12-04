@@ -32,16 +32,14 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: '5.15.2'
+          aqtversion: '==2.1.*'
           host: 'linux'
           target: 'desktop'
           arch: 'gcc_64'
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
-          archives: 'qtbase'
-          cache: 'true'
-          cache-key-prefix: 'install-qt-action'
-          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator,tools_cmake,3.21.1,qt.tools.cmake'
-          set-env: 'true'
+          archives: 'qttools qtquickcontrols2 qtquickcontrols qtdeclarative qtbase'
+          tools: 'tools_cmake tools_ninja tools_generic'
 
       - name: Build project
         run: |
