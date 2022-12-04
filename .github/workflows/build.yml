@@ -16,12 +16,11 @@ jobs:
         with:
           submodules: true
 
-      #instalando dependencias das libraries
-      # - name: Installing Dependencies
-      #   run: |
-      #     sudo apt-get update && sudo apt-get install build-essential
-      #     sudo apt install cmake -y
-      #     sudo apt install clang clang-tidy clang-format ninja-build -y
+      - name: Installing Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install build-essential
+          sudo apt install cmake -y
+          sudo apt install clang clang-tidy clang-format ninja-build -y
       
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v1.8
