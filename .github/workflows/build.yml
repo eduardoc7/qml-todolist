@@ -38,7 +38,6 @@ jobs:
           arch: 'gcc_64'
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
-          # archives: 'qtbase qttools qtquickcontrols2 qtquickcontrols qtdeclarative'
           tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
           setup-python: 'true'
           tools-only: 'false'
@@ -50,7 +49,6 @@ jobs:
           export CMAKE_PREFIX_PATH=${{env.Qt5_Dir}}
           export CC=$(which gcc)
           export CXX=$(which gcc++)
-          export QT_DEBUG_PLUGINS=1
           export CURRENT_SOURCE_DIR=$(pwd)
           mkdir build && cd build
           export CURRENT_BUILD_DIR=$(pwd)
