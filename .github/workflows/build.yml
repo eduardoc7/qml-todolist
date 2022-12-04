@@ -12,7 +12,7 @@ jobs:
     steps:
       # Checkout
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: true
 
@@ -23,7 +23,7 @@ jobs:
           sudo apt install clang clang-tidy clang-format ninja-build -y
       
       - name: Setup cmake
-        uses: jwlawson/actions-setup-cmake@v1.8
+        uses: jwlawson/actions-setup-cmake@v1.13
         with:
           cmake-version: '3.16.x'
       
@@ -34,7 +34,7 @@ jobs:
           host: 'linux'
           target: 'desktop'
           arch: 'gcc_64'
-          dir: '${{ github.workspace }}/qt/'
+          dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
           archives: 'qtbase'
           cache: 'false'
@@ -44,6 +44,7 @@ jobs:
         
       - name: Build project
         run: |
+          export CMAKE_PREFIX_PATH=${{env.Qt5_Dir}}
           export CC=$(which gcc)
           export CXX=$(which gcc++)
           export CURRENT_SOURCE_DIR=$(pwd)
