@@ -38,11 +38,12 @@ jobs:
           arch: 'gcc_64'
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
-          archives: 'qttools qtquickcontrols2 qtquickcontrols qtdeclarative qtbase'
+          # archives: 'qtbase qttools qtquickcontrols2 qtquickcontrols qtdeclarative'
           tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
           setup-python: 'true'
           tools-only: 'false'
           cached: 'false'
+          extra: '--external 7z'
 
       - name: Build project
         run: |
