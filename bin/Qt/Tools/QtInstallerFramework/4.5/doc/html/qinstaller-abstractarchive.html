@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!-- abstractarchive.cpp -->
+  <title>AbstractArchive Class | Qt Installer Framework Manual</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="index.html">Qt Installer Framework Manual</a></li>
+<li>AbstractArchive</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">AbstractArchive Class</h1>
+<span class="small-subtitle">class <a href="scripting-qinstaller.html">QInstaller</a>::AbstractArchive</span>
+<!-- $$$AbstractArchive-brief -->
+<p>The AbstractArchive class is the base class for classes representing different archive files. It cannot be instantiated on its own but defines the API and provides common functionality when subclassed. <a href="#details">More...</a></p>
+<!-- @@@AbstractArchive -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">  <span class="preprocessor">#include &lt;AbstractArchive&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qinstaller-lib7zarchive.html">QInstaller::Lib7zArchive</a>, <a href="qinstaller-libarchivearchive.html">QInstaller::LibArchiveArchive</a>, and <a href="qinstaller-libarchivewrapper.html">QInstaller::LibArchiveWrapper</a></p>
+</td></tr></table></div><ul>
+<li><a href="qinstaller-abstractarchive-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#CompressionLevel-enum">CompressionLevel</a></b> { Non, Fastest, Fast, Normal, Maximum, Ultra }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#AbstractArchive-1">AbstractArchive</a></b>(QObject *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#dtor.AbstractArchive">~AbstractArchive</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#close">close</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#create">create</a></b>(const QStringList &amp;<i>data</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#errorString">errorString</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#extract">extract</a></b>(const QString &amp;<i>dirPath</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#extract-1">extract</a></b>(const QString &amp;<i>dirPath</i>, const quint64 <i>totalFiles</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#isSupported">isSupported</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QVector&lt;QInstaller::ArchiveEntry&gt; </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#list">list</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#open">open</a></b>(QIODevice::OpenMode <i>mode</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#setCompressionLevel">setCompressionLevel</a></b>(const QInstaller::AbstractArchive::CompressionLevel <i>level</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#setFilename">setFilename</a></b>(const QString &amp;<i>filename</i>) = 0</td></tr>
+</table></div>
+<a name="public-slots"></a>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#cancel">cancel</a></b>() = 0</td></tr>
+</table></div>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#completedChanged">completedChanged</a></b>(const quint64 <i>completed</i>, const quint64 <i>total</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#currentEntryChanged">currentEntryChanged</a></b>(const QString &amp;<i>filename</i>)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QInstaller::AbstractArchive::CompressionLevel </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#compressionLevel">compressionLevel</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qinstaller-abstractarchive.html#setErrorString">setErrorString</a></b>(const QString &amp;<i>error</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$AbstractArchive-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@AbstractArchive -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$CompressionLevel$$$Non$$$Fastest$$$Fast$$$Normal$$$Maximum$$$Ultra -->
+<h3 class="fn" id="CompressionLevel-enum"><a name="CompressionLevel-enum"></a>enum AbstractArchive::<span class="name">CompressionLevel</span></h3>
+<p>This enum holds the possible values for archive compression level.</p>
+<div class="table"><table class="valuelist"><tr><th class="tblConst">Constant</th><th class="tblVal">Value</th></tr>
+<tr><td class="topAlign"><code>QInstaller::AbstractArchive::Non</code></td><td class="topAlign tblval"><code>0</code></td></tr>
+<tr><td class="topAlign"><code>QInstaller::AbstractArchive::Fastest</code></td><td class="topAlign tblval"><code>1</code></td></tr>
+<tr><td class="topAlign"><code>QInstaller::AbstractArchive::Fast</code></td><td class="topAlign tblval"><code>3</code></td></tr>
+<tr><td class="topAlign"><code>QInstaller::AbstractArchive::Normal</code></td><td class="topAlign tblval"><code>5</code></td></tr>
+<tr><td class="topAlign"><code>QInstaller::AbstractArchive::Maximum</code></td><td class="topAlign tblval"><code>7</code></td></tr>
+<tr><td class="topAlign"><code>QInstaller::AbstractArchive::Ultra</code></td><td class="topAlign tblval"><code>9</code></td></tr>
+</table></div>
+<!-- @@@CompressionLevel -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$AbstractArchive$$$AbstractArchiveQObject* -->
+<h3 class="fn" id="AbstractArchive-1"><a name="AbstractArchive-1"></a>AbstractArchive::<span class="name">AbstractArchive</span>(<span class="type">QObject</span> *<i>parent</i> = nullptr)</h3>
+<p>Constructs a new archive object with <i>parent</i> as parent. Cannot be called directly but instead from subclass constructors.</p>
+<!-- @@@AbstractArchive -->
+<!-- $$$cancel[overload1]$$$cancel -->
+<h3 class="fn" id="cancel"><a name="cancel"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractArchive::<span class="name">cancel</span>()</h3>
+<p>Cancels current operation. A subclass should implement this slot.</p>
+<!-- @@@cancel -->
+<!-- $$$completedChanged[overload1]$$$completedChangedconstquint64constquint64 -->
+<h3 class="fn" id="completedChanged"><a name="completedChanged"></a><code>[signal] </code><span class="type">void</span> AbstractArchive::<span class="name">completedChanged</span>(const <span class="type">quint64</span> <i>completed</i>, const <span class="type">quint64</span> <i>total</i>)</h3>
+<p>The ratio of <i>completed</i> entries from <i>total</i> changed. Subclasses should emit this whenever the progress changes.</p>
+<!-- @@@completedChanged -->
+<!-- $$$currentEntryChanged[overload1]$$$currentEntryChangedconstQString& -->
+<h3 class="fn" id="currentEntryChanged"><a name="currentEntryChanged"></a><code>[signal] </code><span class="type">void</span> AbstractArchive::<span class="name">currentEntryChanged</span>(const <span class="type">QString</span> &amp;<i>filename</i>)</h3>
+<p>Current entry changed to <i>filename</i>. Subclasses should emit this signal whenever the entry to process is changed.</p>
+<!-- @@@currentEntryChanged -->
+<!-- $$$~AbstractArchive[overload1]$$$~AbstractArchive -->
+<h3 class="fn" id="dtor.AbstractArchive"><a name="dtor.AbstractArchive"></a><code>[pure virtual] </code>AbstractArchive::<span class="name">~AbstractArchive</span>()</h3>
+<p>Virtual destructor for <code>AbstractArchive</code>.</p>
+<!-- @@@~AbstractArchive -->
+<!-- $$$close[overload1]$$$close -->
+<h3 class="fn" id="close"><a name="close"></a><code>[pure virtual] </code><span class="type">void</span> AbstractArchive::<span class="name">close</span>()</h3>
+<p>Closes the archive. A subclass should implement this method.</p>
+<!-- @@@close -->
+<!-- $$$compressionLevel[overload1]$$$compressionLevel -->
+<h3 class="fn" id="compressionLevel"><a name="compressionLevel"></a><code>[protected] </code><span class="type"><a href="qinstaller-abstractarchive.html#CompressionLevel-enum">QInstaller::AbstractArchive::CompressionLevel</a></span> AbstractArchive::<span class="name">compressionLevel</span>() const</h3>
+<p>Returns the current compression level.</p>
+<p><b>See also </b><a href="qinstaller-abstractarchive.html#setCompressionLevel">setCompressionLevel</a>().</p>
+<!-- @@@compressionLevel -->
+<!-- $$$create[overload1]$$$createconstQStringList& -->
+<h3 class="fn" id="create"><a name="create"></a><code>[pure virtual] </code><span class="type">bool</span> AbstractArchive::<span class="name">create</span>(const <span class="type">QStringList</span> &amp;<i>data</i>)</h3>
+<p>Creates an archive from <i>data</i>. Returns <code>true</code> on success; <code>false</code> otherwise. A subclass should implement this method.</p>
+<!-- @@@create -->
+<!-- $$$errorString[overload1]$$$errorString -->
+<h3 class="fn" id="errorString"><a name="errorString"></a><code>[virtual] </code><span class="type">QString</span> AbstractArchive::<span class="name">errorString</span>() const</h3>
+<p>Returns a human-readable description of the last error that occurred.</p>
+<p><b>See also </b><a href="qinstaller-abstractarchive.html#setErrorString">setErrorString</a>().</p>
+<!-- @@@errorString -->
+<!-- $$$extract[overload1]$$$extractconstQString& -->
+<h3 class="fn" id="extract"><a name="extract"></a><code>[pure virtual] </code><span class="type">bool</span> AbstractArchive::<span class="name">extract</span>(const <span class="type">QString</span> &amp;<i>dirPath</i>)</h3>
+<p>Extracts the archive to <i>dirPath</i>. Returns <code>true</code> on success; <code>false</code> otherwise. A subclass should implement this method.</p>
+<!-- @@@extract -->
+<!-- $$$extract$$$extractconstQString&constquint64 -->
+<h3 class="fn" id="extract-1"><a name="extract-1"></a><code>[pure virtual] </code><span class="type">bool</span> AbstractArchive::<span class="name">extract</span>(const <span class="type">QString</span> &amp;<i>dirPath</i>, const <span class="type">quint64</span> <i>totalFiles</i>)</h3>
+<p>Extracts the contents of an archive to <i>dirPath</i> with precalculated count of <i>totalFiles</i>. Returns <code>true</code> on success; <code>false</code> otherwise. A subclass should implement this method.</p>
+<!-- @@@extract -->
+<!-- $$$isSupported[overload1]$$$isSupported -->
+<h3 class="fn" id="isSupported"><a name="isSupported"></a><code>[pure virtual] </code><span class="type">bool</span> AbstractArchive::<span class="name">isSupported</span>()</h3>
+<p>Returns <code>true</code> if the archive is supported; <code>false</code> otherwise. A subclass should implement this method.</p>
+<!-- @@@isSupported -->
+<!-- $$$list[overload1]$$$list -->
+<h3 class="fn" id="list"><a name="list"></a><code>[pure virtual] </code><span class="type">QVector</span>&lt;<span class="type"><a href="qinstaller-archiveentry.html">QInstaller::ArchiveEntry</a></span>&gt; AbstractArchive::<span class="name">list</span>()</h3>
+<p>Returns a list of entries in this archive. A subclass should implement this method.</p>
+<!-- @@@list -->
+<!-- $$$open[overload1]$$$openQIODevice::OpenMode -->
+<h3 class="fn" id="open"><a name="open"></a><code>[pure virtual] </code><span class="type">bool</span> AbstractArchive::<span class="name">open</span>(<span class="type">QIODevice::OpenMode</span> <i>mode</i>)</h3>
+<p>Opens the file device for an archive in <i>mode</i>. Returns <code>true</code> on success; <code>false</code> otherwise. A subclass should implement this method.</p>
+<!-- @@@open -->
+<!-- $$$setCompressionLevel[overload1]$$$setCompressionLevelconstQInstaller::AbstractArchive::CompressionLevel -->
+<h3 class="fn" id="setCompressionLevel"><a name="setCompressionLevel"></a><code>[virtual] </code><span class="type">void</span> AbstractArchive::<span class="name">setCompressionLevel</span>(const <span class="type"><a href="qinstaller-abstractarchive.html#CompressionLevel-enum">QInstaller::AbstractArchive::CompressionLevel</a></span> <i>level</i>)</h3>
+<p>Sets the compression level for new archives to <i>level</i>.</p>
+<p><b>See also </b><a href="qinstaller-abstractarchive.html#compressionLevel">compressionLevel</a>().</p>
+<!-- @@@setCompressionLevel -->
+<!-- $$$setErrorString[overload1]$$$setErrorStringconstQString& -->
+<h3 class="fn" id="setErrorString"><a name="setErrorString"></a><code>[protected] </code><span class="type">void</span> AbstractArchive::<span class="name">setErrorString</span>(const <span class="type">QString</span> &amp;<i>error</i>)</h3>
+<p>Sets a human-readable description of the current <i>error</i>.</p>
+<p><b>See also </b><a href="qinstaller-abstractarchive.html#errorString">errorString</a>().</p>
+<!-- @@@setErrorString -->
+<!-- $$$setFilename[overload1]$$$setFilenameconstQString& -->
+<h3 class="fn" id="setFilename"><a name="setFilename"></a><code>[pure virtual] </code><span class="type">void</span> AbstractArchive::<span class="name">setFilename</span>(const <span class="type">QString</span> &amp;<i>filename</i>)</h3>
+<p>Sets the <i>filename</i> for the archive. A subclass should implement this method.</p>
+<!-- @@@setFilename -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2020 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
