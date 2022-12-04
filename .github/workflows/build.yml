@@ -41,6 +41,9 @@ jobs:
           cache-key-prefix: 'install-qt-action'
           tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
           set-env: 'true'
+      
+      - name: List Env
+        run: printenv
         
       - name: Build project
         run: |
