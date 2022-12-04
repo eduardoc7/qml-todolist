@@ -21,6 +21,7 @@ jobs:
           sudo apt-get update && sudo apt-get install build-essential
           sudo apt install cmake -y
           sudo apt install clang clang-tidy clang-format ninja-build -y
+          sudo apt install mesa-common-dev libglu1-mesa-dev -y
       
       - name: Setup cmake
         uses: jwlawson/actions-setup-cmake@v1.13
@@ -37,9 +38,9 @@ jobs:
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
           archives: 'qtbase'
-          cache: 'false'
+          cache: 'true'
           cache-key-prefix: 'install-qt-action'
-          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
+          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator,tools_cmake,3.21.1,qt.tools.cmake'
           set-env: 'true'
 
       - name: Build project
@@ -49,7 +50,7 @@ jobs:
           export CXX=$(which gcc++)
           export CURRENT_SOURCE_DIR=$(pwd)
           printenv
-          cd ${{env.Qt5_Dir}}
+          cd ${{env.Qt5_Dir}}/bin
           ls -all
           # mkdir build && cd build
           # export CURRENT_BUILD_DIR=$(pwd)
