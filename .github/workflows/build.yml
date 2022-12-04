@@ -19,8 +19,7 @@ jobs:
       - name: Installing Dependencies
         run: |
           sudo apt-get update && sudo apt-get install build-essential
-          sudo apt install cmake -y
-          sudo apt install clang clang-tidy clang-format ninja-build -y
+          sudo apt install clang clang-tidy clang-format -y
           sudo apt install mesa-common-dev libglu1-mesa-dev -y
       
       - name: Setup cmake
