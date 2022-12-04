@@ -1,0 +1,54 @@
+
+name: build
+
+on: 
+  push:
+    branches:
+      - test-code-quality
+
+jobs:
+  Testing_Code_Quality: 
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      #instalando dependencias das libraries
+      # - name: Installing Dependencies
+      #   run: |
+      #     sudo apt-get update && sudo apt-get install build-essential
+      #     sudo apt install cmake -y
+      #     sudo apt install clang clang-tidy clang-format ninja-build -y
+      
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v1.8
+        with:
+          cmake-version: '3.16.x'
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '5.15.2'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
+          dir: '${{ github.workspace }}/build/'
+          install-deps: 'true'
+          archives: 'qtbase'
+          cache: 'false'
+          cache-key-prefix: 'install-qt-action'
+          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
+          set-env: 'true'
+        
+      - name: Build project
+        run: |
+          export CC=$(which gcc)
+          export CXX=$(which gcc++)
+          export CURRENT_SOURCE_DIR=$(pwd)
+          mkdir build && cd build
+          export CURRENT_BUILD_DIR=$(pwd)
+          cmake .. -G Ninja
+          cmake --build . --config Debug --target all -j $(nproc) --
