@@ -35,7 +35,7 @@ jobs:
           arch: 'gcc_64'
           dir: '${{ github.workspace }}/bin/'
           install-deps: 'true'
-          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
+          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
           setup-python: 'true'
           tools-only: 'false'
           cache: 'false'
