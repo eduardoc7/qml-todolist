@@ -52,7 +52,7 @@ jobs:
           printenv
           cd ${{env.Qt5_Dir}}/bin
           ls -all
-          # mkdir build && cd build
-          # export CURRENT_BUILD_DIR=$(pwd)
-          # cmake .. -G Ninja
-          # cmake --build . --config Debug --target all -j $(nproc) --
+          mkdir build && cd build
+          export CURRENT_BUILD_DIR=$(pwd)
+          cmake .. -G Ninja
+          cmake --build . --config Debug --target all -j $(nproc) --
