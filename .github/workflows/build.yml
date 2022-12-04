@@ -41,17 +41,17 @@ jobs:
           cache-key-prefix: 'install-qt-action'
           tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
           set-env: 'true'
-      
-      - name: List Env
-        run: printenv
-        
+
       - name: Build project
         run: |
           export CMAKE_PREFIX_PATH=${{env.Qt5_Dir}}
           export CC=$(which gcc)
           export CXX=$(which gcc++)
           export CURRENT_SOURCE_DIR=$(pwd)
-          mkdir build && cd build
-          export CURRENT_BUILD_DIR=$(pwd)
-          cmake .. -G Ninja
-          cmake --build . --config Debug --target all -j $(nproc) --
+          printenv
+          cd ${{env.Qt5_Dir}}
+          ls -all
+          # mkdir build && cd build
+          # export CURRENT_BUILD_DIR=$(pwd)
+          # cmake .. -G Ninja
+          # cmake --build . --config Debug --target all -j $(nproc) --
