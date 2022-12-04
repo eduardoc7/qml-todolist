@@ -40,6 +40,9 @@ jobs:
           install-deps: 'true'
           archives: 'qttools qtquickcontrols2 qtquickcontrols qtdeclarative qtbase'
           tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
+          setup-python: 'true'
+          tools-only: 'false'
+          cached: 'false'
 
       - name: Build project
         run: |
