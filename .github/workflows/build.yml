@@ -34,7 +34,7 @@ jobs:
           host: 'linux'
           target: 'desktop'
           arch: 'gcc_64'
-          dir: '${{ github.workspace }}/build/'
+          dir: '${{ github.workspace }}/qt/'
           install-deps: 'true'
           archives: 'qtbase'
           cache: 'false'
