@@ -53,7 +53,7 @@ jobs:
   Test_Code_Quality: 
     needs: Build_and_Test
     runs-on: ubuntu-latest
-
+    steps:
       - name: Running Clang Tidy
         run: |
           run-clang-tidy -p build -fix -j $(nproc) -header-filter='.*' -format $(find src/ -iname '*.cpp') > report_code_quality.txt
