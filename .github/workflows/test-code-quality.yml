@@ -47,15 +47,6 @@ jobs:
           export CURRENT_BUILD_DIR=$(pwd)
           cmake .. -G Ninja
           cmake --build . --config Debug --target all -j $(nproc) --
-
-      - name: Cache Build Folder
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-build-directory-project
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: build/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/CMakeLists.txt') }}
       
       - name: Running Clang Tidy
         run: |
@@ -72,4 +63,16 @@ jobs:
         if: ${{ failure() }} || ${{ success() }}
         run: |
           rm -rf report_code_quality.txt
+
+      - name: Get the current branch name
+        if: ${{ failure() }} || ${{ success() }}
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: myref
+
+      - name: Publish Updates
+        if: ${{ failure() }} || ${{ success() }}
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ steps.myref.outputs.branch }} # Current branch   
 
