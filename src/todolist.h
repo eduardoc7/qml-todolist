@@ -1,9 +1,6 @@
 #ifndef HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOLIST_H
 #define HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOLIST_H
 
-#include <QObject>
-#include <QVector>
-
 // NOLINTNEXTLINE
 struct ToDoItem {
   bool done;
@@ -19,9 +16,9 @@ public:
   explicit ToDoList(QObject *parent);
 
   // para o model ter acesso a lista
-  QVector<ToDoItem> items() const;
+  auto items() const -> QVector<ToDoItem>;
 
-  bool setItemAt(int index, const ToDoItem &item);
+  auto setItemAt(int index, const ToDoItem &item) -> bool;
 
 signals:
   void preItemAppended();

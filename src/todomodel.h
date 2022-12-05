@@ -1,8 +1,6 @@
 #ifndef HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
 #define HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
 
-#include <QAbstractListModel>
-
 class ToDoList;
 class ToDoModel : public QAbstractListModel {
   Q_OBJECT

@@ -1,5 +1,4 @@
 #include "todolist.h"
-#include <QDebug>
 
 ToDoList::ToDoList(QObject *parent) : QObject(parent) {
   m_items.append({true, QStringLiteral("Explore Basic QML Concepts")});
@@ -9,7 +8,7 @@ ToDoList::ToDoList(QObject *parent) : QObject(parent) {
   m_items.append({true, QStringLiteral("Learn Basic Signal/Slots Syntax")});
 }
 
-QVector<ToDoItem> ToDoList::items() const { return m_items; }
+auto ToDoList::items() const -> QVector<ToDoItem> { return m_items; }
 
 auto ToDoList::countDoneItems() -> int {
   if (m_items.empty()) {

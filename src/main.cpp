@@ -1,9 +1,6 @@
 
 #include "todolist.h"
 #include "todomodel.h"
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
 
 auto main(int argc, char *argv[]) -> int {
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
