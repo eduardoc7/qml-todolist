@@ -1,0 +1,71 @@
+name: test-code-quality
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  Build_and_Test: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Installing Dependencies
+        run: |
+          sudo apt update && sudo apt install clang-tidy clang-format ninja-build -y
+  
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v1.13
+        with:
+          cmake-version: '3.16.x'
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '5.15.2'
+          aqtversion: '==2.1.*'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
+          dir: '${{ github.workspace }}/bin/'
+          install-deps: 'true'
+          tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
+          setup-python: 'true'
+          tools-only: 'false'
+          cache: 'false'
+          extra: '--external 7z'
+
+      - name: Build project
+        run: |
+          export CMAKE_PREFIX_PATH=${{env.Qt5_Dir}}
+          export CC=$(which gcc)
+          export CXX=$(which gcc++)
+          export CURRENT_SOURCE_DIR=$(pwd)
+          mkdir build && cd build
+          export CURRENT_BUILD_DIR=$(pwd)
+          cmake .. -G Ninja
+          cmake --build . --config Debug --target all -j $(nproc) --
+
+  Test_Code_Quality: 
+    needs: Build_and_Test
+    runs-on: ubuntu-latest
+
+      - name: Running Clang Tidy
+        run: |
+          run-clang-tidy -p build -fix -j $(nproc) -header-filter='.*' -format $(find src/ -iname '*.cpp') > report_code_quality.txt
+      
+      - name: Upload Artifacts
+        if: ${{ failure() }} || ${{ success() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: report_code_quality
+          path: ./report_code_quality.txt
+
+      - name: Delete Report
+        if: ${{ failure() }} || ${{ success() }}
+        run: |
+          rm -rf report_code_quality.txt
