@@ -1,4 +1,3 @@
-#include <QDebug>
 #include "todolist.h"
 
 ToDoList::ToDoList( QObject* parent ) :
@@ -14,14 +13,13 @@ auto ToDoList::items()->QVector<ToDoItem> const {
     return m_items;
 }
 
-int ToDoList::countDoneItems() {
-    if ( m_items.size() == 0 ) {
-        return 0;
-    }
+auto ToDoList::countDoneItems() -> int {
+  if (m_items.empty()) {
+    return 0;
+  }
 
-    return std::count_if( m_items.begin(), m_items.end(), []( ToDoItem el ) {
-        return el.done;
-    } );
+  return std::count_if(m_items.begin(), m_items.end(),
+                       [](const ToDoItem &el) { return el.done; });
 }
 
 auto ToDoList::setItemAt( int index, const ToDoItem& item )->bool {

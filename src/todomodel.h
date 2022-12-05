@@ -1,7 +1,5 @@
-#ifndef TODOMODEL_H
-#define TODOMODEL_H
-
-#include <QAbstractListModel>
+#ifndef HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
+#define HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
 
 //Q_MOC_INCLUDE( "todolist.h" )
 
@@ -11,31 +9,28 @@ class ToDoModel : public QAbstractListModel {
     Q_PROPERTY( ToDoList * list READ list WRITE setList )
 
 public:
-    explicit ToDoModel( QObject* parent = nullptr );
+  explicit ToDoModel(QObject *parent);
 
-    enum {
-        DoneRole = Qt::UserRole,
-        TitleRole
-    };
+  enum { DoneRole = Qt::UserRole, TitleRole };
 
-    // Basic functionality:
-    int rowCount( const QModelIndex& parent = QModelIndex() )const override;
+  // Basic functionality:
+  auto rowCount(const QModelIndex &parent) const -> int override;
 
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
+  auto data(const QModelIndex &index, int role) const -> QVariant override;
 
-    // Editable:
-    bool setData( const QModelIndex& index, const QVariant& value,
-                  int role = Qt::EditRole ) override;
+  // Editable:
+  auto setData(const QModelIndex &index, const QVariant &value, int role)
+      -> bool override;
 
-    Qt::ItemFlags flags( const QModelIndex& index ) const override;
+  auto flags(const QModelIndex &index) const -> Qt::ItemFlags override;
 
-    virtual QHash<int, QByteArray> roleNames() const override;
+  auto roleNames() const -> QHash<int, QByteArray> override;
 
-    ToDoList* list() const;
-    void setList( ToDoList* list );
+  auto list() const -> ToDoList *;
+  void setList(ToDoList *list);
 
 private:
-    ToDoList* m_list;
+  ToDoList *m_list{nullptr};
 };
 
-#endif // TODOMODEL_H
+#endif // HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
