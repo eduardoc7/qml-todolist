@@ -57,27 +57,8 @@ jobs:
           path: build/
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/CMakeLists.txt') }}
       
-      - name: Upload Artifacts
-        if: ${{ success() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build/
-
-  Test_Code_Quality: 
-    needs: Build_and_Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-
       - name: Running Clang Tidy
         run: |
-          ls -all
-          cd build/
-          ls -all
           run-clang-tidy -p build -fix -j $(nproc) -header-filter='.*' -format $(find src/ -iname '*.cpp') > report_code_quality.txt
       
       - name: Upload Artifacts
@@ -91,3 +72,4 @@ jobs:
         if: ${{ failure() }} || ${{ success() }}
         run: |
           rm -rf report_code_quality.txt
+
