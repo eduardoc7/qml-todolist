@@ -75,6 +75,9 @@ jobs:
 
       - name: Running Clang Tidy
         run: |
+          ls -all
+          cd build/
+          ls -all
           run-clang-tidy -p build -fix -j $(nproc) -header-filter='.*' -format $(find src/ -iname '*.cpp') > report_code_quality.txt
       
       - name: Upload Artifacts
