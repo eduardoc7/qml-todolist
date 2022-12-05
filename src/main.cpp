@@ -1,6 +1,9 @@
 
 #include "todolist.h"
 #include "todomodel.h"
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 auto main(int argc, char *argv[]) -> int {
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -17,7 +20,7 @@ auto main(int argc, char *argv[]) -> int {
       "ToDo", 1, 0, "ToDoList",
       QStringLiteral("ToDoList should not be created in QML file"));
 
-  ToDoList toDoList;
+  ToDoList toDoList(nullptr);
   QQmlApplicationEngine engine;
 
   // torna o objeto toDoList disponível em todos os qml files da aplicação

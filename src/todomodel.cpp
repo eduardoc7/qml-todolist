@@ -1,6 +1,7 @@
 
 #include "todolist.h"
 #include "todomodel.h"
+#include <QDebug>
 
 ToDoModel::ToDoModel(QObject *parent) : QAbstractListModel(parent) {
   qInfo("-- Contructor ToDoModel");
@@ -83,27 +84,27 @@ auto ToDoModel::roleNames() const -> QHash<int, QByteArray> {
 
 auto ToDoModel::list() const -> ToDoList * { return m_list; }
 
-void ToDoModel::setList( ToDoList* list ) {
-    beginResetModel();
+void ToDoModel::setList(ToDoList *list) {
+  beginResetModel();
 
-    if (m_list != nullptr) {
-      m_list->disconnect(this);
-    }
+  if (m_list != nullptr) {
+    m_list->disconnect(this);
+  }
 
-    m_list = list;
+  m_list = list;
 
-    if (m_list != nullptr) {
-      connect(m_list, &ToDoList::preItemAppended, this, [=]() {
-        const int index = m_list->items().size();
-        beginInsertRows(QModelIndex(), index, index);
-      });
-      connect(m_list, &ToDoList::postItemAppended, this,
-              [=]() { endInsertRows(); });
-      connect(m_list, &ToDoList::preItemRemoved, this,
-              [=](int index) { beginRemoveRows(QModelIndex(), index, index); });
-      connect(m_list, &ToDoList::postItemRemoved, this,
-              [=]() { endRemoveRows(); });
-    }
+  if (m_list != nullptr) {
+    connect(m_list, &ToDoList::preItemAppended, this, [=]() {
+      const int index = m_list->items().size();
+      beginInsertRows(QModelIndex(), index, index);
+    });
+    connect(m_list, &ToDoList::postItemAppended, this,
+            [=]() { endInsertRows(); });
+    connect(m_list, &ToDoList::preItemRemoved, this,
+            [=](int index) { beginRemoveRows(QModelIndex(), index, index); });
+    connect(m_list, &ToDoList::postItemRemoved, this,
+            [=]() { endRemoveRows(); });
+  }
 
-    endResetModel();
+  endResetModel();
 }

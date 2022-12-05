@@ -1,15 +1,16 @@
 #ifndef HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
 #define HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOMODEL_H
 
-//Q_MOC_INCLUDE( "todolist.h" )
+#include <QAbstractListModel>
 
 class ToDoList;
 class ToDoModel : public QAbstractListModel {
-    Q_OBJECT
-    Q_PROPERTY( ToDoList * list READ list WRITE setList )
+  Q_OBJECT
+  Q_PROPERTY(ToDoList *list READ list WRITE setList)
 
 public:
-  explicit ToDoModel(QObject *parent);
+  // NOLINTNEXTLINE
+  explicit ToDoModel(QObject *parent = nullptr);
 
   enum { DoneRole = Qt::UserRole, TitleRole };
 

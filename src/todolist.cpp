@@ -1,17 +1,15 @@
 #include "todolist.h"
+#include <QDebug>
 
-ToDoList::ToDoList( QObject* parent ) :
-    QObject( parent ) {
-    m_items.append( { true, QStringLiteral( "Explore Basic QML Concepts" ) } );
-    m_items.append( { true, QStringLiteral( "Learn QML Model Data" ) } );
-    m_items.append( { true, QStringLiteral( "Learn Property Attributes" ) } );
-    m_items.append( { true, QStringLiteral( "Learn QML Basic Types" ) } );
-    m_items.append( { true, QStringLiteral( "Learn Basic Signal/Slots Syntax" ) } );
+ToDoList::ToDoList(QObject *parent) : QObject(parent) {
+  m_items.append({true, QStringLiteral("Explore Basic QML Concepts")});
+  m_items.append({true, QStringLiteral("Learn QML Model Data")});
+  m_items.append({true, QStringLiteral("Learn Property Attributes")});
+  m_items.append({true, QStringLiteral("Learn QML Basic Types")});
+  m_items.append({true, QStringLiteral("Learn Basic Signal/Slots Syntax")});
 }
 
-auto ToDoList::items()->QVector<ToDoItem> const {
-    return m_items;
-}
+QVector<ToDoItem> ToDoList::items() const { return m_items; }
 
 auto ToDoList::countDoneItems() -> int {
   if (m_items.empty()) {
@@ -22,40 +20,38 @@ auto ToDoList::countDoneItems() -> int {
                        [](const ToDoItem &el) { return el.done; });
 }
 
-auto ToDoList::setItemAt( int index, const ToDoItem& item )->bool {
-    qInfo() << "-- ToDoList::setItemAt [index]=" << index << "[item]=" << item.title << item.done;
+auto ToDoList::setItemAt(int index, const ToDoItem &item) -> bool {
+  qInfo() << "-- ToDoList::setItemAt [index]=" << index
+          << "[item]=" << item.title << item.done;
 
-    // index out of range
-    if ( index < 0 || index >= m_items.size() ) {
-        return false;
-    }
+  // index out of range
+  if (index < 0 || index >= m_items.size()) {
+    return false;
+  }
 
-    const ToDoItem& oldItem = m_items.at( index );
+  const ToDoItem &oldItem = m_items.at(index);
 
-    if ( item.done == oldItem.done && item.title == oldItem.title ) {
-        return false;
-    }
+  if (item.done == oldItem.done && item.title == oldItem.title) {
+    return false;
+  }
 
-    m_items[index] = item;
+  m_items[index] = item;
 
-    return true;
+  return true;
 }
 
-void ToDoList::appendItem( const QString& title ) {
-    emit preItemAppended();
+void ToDoList::appendItem(const QString &title) {
+  emit preItemAppended();
 
-    ToDoItem item;
-    item.title = title;
-    item.done = false;
-    m_items.append( item );
+  m_items.append({false, QString(title)});
 
-    emit postItemAppended();
+  emit postItemAppended();
 }
 
-void ToDoList::removeItemFromList( const int& index ) {
-    emit preItemRemoved( index );
+void ToDoList::removeItemFromList(const int &index) {
+  emit preItemRemoved(index);
 
-    m_items.removeAt( index );
+  m_items.removeAt(index);
 
-    emit postItemRemoved();
+  emit postItemRemoved();
 }
