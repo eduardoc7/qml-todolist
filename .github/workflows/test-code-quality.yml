@@ -36,7 +36,7 @@ jobs:
           tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator tools_cmake tools_ninja tools_generic'
           setup-python: 'true'
           tools-only: 'false'
-          
+
       - name: Build project
         run: |
           export CMAKE_PREFIX_PATH=${{env.Qt5_Dir}}
@@ -48,17 +48,38 @@ jobs:
           cmake .. -G Ninja
           cmake --build . --config Debug --target all -j $(nproc) --
 
+      - name: Cache Build Folder
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-build-directory-project
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: build/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/CMakeLists.txt') }}
+      
+      - name: Upload Artifacts
+        if: ${{ success() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build/
+
   Test_Code_Quality: 
     needs: Build_and_Test
     runs-on: ubuntu-latest
     steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+
       - name: Running Clang Tidy
         run: |
           run-clang-tidy -p build -fix -j $(nproc) -header-filter='.*' -format $(find src/ -iname '*.cpp') > report_code_quality.txt
       
       - name: Upload Artifacts
         if: ${{ failure() }} || ${{ success() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: report_code_quality
           path: ./report_code_quality.txt
