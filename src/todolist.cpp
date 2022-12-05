@@ -1,4 +1,5 @@
 #include "todolist.h"
+#include <QDebug>
 
 ToDoList::ToDoList(QObject *parent) : QObject(parent) {
   m_items.append({true, QStringLiteral("Explore Basic QML Concepts")});

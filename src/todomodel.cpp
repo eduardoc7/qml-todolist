@@ -1,6 +1,7 @@
 
 #include "todolist.h"
 #include "todomodel.h"
+#include <QDebug>
 
 ToDoModel::ToDoModel(QObject *parent) : QAbstractListModel(parent) {
   qInfo("-- Contructor ToDoModel");

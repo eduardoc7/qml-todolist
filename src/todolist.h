@@ -1,6 +1,9 @@
 #ifndef HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOLIST_H
 #define HOME_RUNNER_WORK_QML_TODOLIST_QML_TODOLIST_SRC_TODOLIST_H
 
+#include <QObject>
+#include <QVector>
+
 // NOLINTNEXTLINE
 struct ToDoItem {
   bool done;

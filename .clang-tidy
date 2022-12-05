@@ -1,5 +1,5 @@
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*, *, read*,modern*,hicpp*,performance*'
+Checks:          'clang-diagnostic-*,clang-analyzer-*,read*,modern*,hicpp*,performance*'
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: false
